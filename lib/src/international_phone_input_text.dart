@@ -185,8 +185,9 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.phoneTextController.text!='')
-      phoneTextController = widget.phoneTextController;
+    if (widget.phoneTextController !=null)
+      if(widget.phoneTextController.text!='')
+        phoneTextController = widget.phoneTextController;
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
