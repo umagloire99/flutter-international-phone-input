@@ -96,7 +96,6 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
   @override
   void initState() {
-    print('object');
     errorText = widget.errorText ?? 'Please enter a valid phone number';
     hintText = widget.hintText ?? 'eg. 244056345';
     labelText = widget.labelText;
@@ -190,9 +189,11 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
   @override
   Widget build(BuildContext context) {
     if (widget.phoneTextController !=null)
-      if(widget.phoneTextController.text!='')
-        phoneTextController = widget.phoneTextController;
-    return Container(
+      if(widget.phoneTextController.text!=''){
+        phoneTextController.text = widget.phoneTextController.text;
+        phoneTextController.selection = TextSelection.fromPosition(TextPosition(offset: widget.phoneTextController.text.length));
+      }
+      return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
