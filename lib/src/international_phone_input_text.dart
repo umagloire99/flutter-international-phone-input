@@ -193,7 +193,8 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
   @override
   Widget build(BuildContext context) {
     if (widget.phoneTextController !=null)
-      if(widget.phoneTextController.text!=''){
+      if(widget.phoneTextController.text!='') {
+        selectedItem.dialCode = widget.initialSelection;
         phoneTextController.text = widget.phoneTextController.text;
         phoneTextController.selection = TextSelection.fromPosition(TextPosition(offset: widget.phoneTextController.text.length));
       }
