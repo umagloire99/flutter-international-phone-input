@@ -5,9 +5,10 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:international_phone_input/international_phone_input.dart';
 import 'package:international_phone_input/src/phone_service.dart';
-
 import 'country.dart';
+
 
 class InternationalPhoneInputs extends StatefulWidget {
   final void Function(String phoneNumber, String internationalizedPhoneNumber,
@@ -106,8 +107,12 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
     phoneTextController.addListener(_validatePhoneNumber);
     phoneTextController.text = widget.initialPhoneNumber;
-
+    _currentCountryData();
+    super.initState();
+  }
+  _currentCountryData() {
     _fetchCountryData(context).then((list) {
+      print('yep');
       Country preSelectedItem;
 
       if (widget.initialSelection != null) {
@@ -126,11 +131,19 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
         selectedItem = preSelectedItem;
       });
     });
-
-    super.initState();
   }
 
-  _validatePhoneNumber() {
+  editController () {
+    if (widget.phoneTextController !=null)
+      if(widget.phoneTextController.text!='') {
+        selectedItem.dialCode = widget.initialSelection;
+        phoneTextController.text = widget.phoneTextController.text;
+        phoneTextController.selection = TextSelection.fromPosition(TextPosition(offset: widget.phoneTextController.text.length));
+      }
+  }
+
+  _validatePhoneNumber() async {
+    await _currentCountryData();
     String phoneText = phoneTextController.text;
     if (phoneText != null && phoneText.isNotEmpty) {
       PhoneService.parsePhoneNumber(phoneText, selectedItem.code)
@@ -192,13 +205,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.phoneTextController !=null)
-      if(widget.phoneTextController.text!='') {
-        selectedItem.dialCode = widget.initialSelection;
-        phoneTextController.text = widget.phoneTextController.text;
-        phoneTextController.selection = TextSelection.fromPosition(TextPosition(offset: widget.phoneTextController.text.length));
-      }
-      return Container(
+    return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -233,6 +240,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
                 value: selectedItem,
                 onChanged: (Country newValue) {
                   setState(() {
+                    print(newValue);
                     selectedItem = newValue;
                   });
                   _validatePhoneNumber();
