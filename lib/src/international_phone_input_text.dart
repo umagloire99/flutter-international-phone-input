@@ -205,7 +205,6 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.phoneTextController.text);
     if (widget.phoneTextController !=null)
       if(widget.phoneTextController.text!='') {
         selectedItem.dialCode = widget.initialSelection;
@@ -217,33 +216,14 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 60,
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                      //                    <--- top side
-                      color: Colors.white,
-                    ))),
-            child: Icon(
-              Icons.keyboard_arrow_down,
-              color: Colors.white,
-            ),
-          ),
-          Container(
             padding: EdgeInsets.only(top: 8, right: 5),
             margin: EdgeInsets.only(right: 10),
             height: 60,
-            decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    //                    <--- top side
-                    color: Colors.white,
-                  ),
-                )),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<Country>(
                 icon: Container(),
                 isDense: true,
+                isExpanded: true,
                 value: selectedItem,
                 onChanged: (Country newValue) {
                   setState(() {
