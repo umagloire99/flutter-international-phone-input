@@ -227,6 +227,8 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
             ),
           ),
           Container(
+            padding: EdgeInsets.only(top: 8, right: 5),
+            margin: EdgeInsets.only(right: 10),
             height: 60,
             child: DropdownButtonHideUnderline(
               child: DropdownButton<Country>(
