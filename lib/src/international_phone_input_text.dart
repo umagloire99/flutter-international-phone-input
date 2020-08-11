@@ -243,7 +243,6 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
               child: DropdownButton<Country>(
                 icon: Container(),
                 isDense: true,
-                isExpanded: true,
                 value: selectedItem,
                 onChanged: (Country newValue) {
                   setState(() {
