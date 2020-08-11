@@ -134,8 +134,10 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
   }
 
   editController () {
+    print(widget.phoneTextController.text);
     if (widget.phoneTextController !=null)
       if(widget.phoneTextController.text!='') {
+        print('am here now');
         selectedItem.dialCode = widget.initialSelection;
         phoneTextController.text = widget.phoneTextController.text;
         phoneTextController.selection = TextSelection.fromPosition(TextPosition(offset: widget.phoneTextController.text.length));
@@ -205,6 +207,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.phoneTextController.text);
     editController();
     return Container(
       child: Row(
@@ -224,16 +227,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 8, right: 5),
-            margin: EdgeInsets.only(right: 10),
             height: 60,
-            decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    //                    <--- top side
-                    color: Colors.white,
-                  ),
-                )),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<Country>(
                 isExpanded: true,
