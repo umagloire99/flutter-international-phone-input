@@ -213,19 +213,8 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 60,
-            decoration: BoxDecoration(
-                border: Border(
-                    bottom: BorderSide(
-                      //                    <--- top side
-                      color: Colors.white,
-                    ))),
-            child: Icon(
-              Icons.keyboard_arrow_down,
-              color: Colors.white,
-            ),
-          ),
-          Container(
+            padding: EdgeInsets.only(top: 8, right: 5),
+            margin: EdgeInsets.only(right: 10),
             height: 60,
             child: DropdownButtonHideUnderline(
               child: DropdownButton<Country>(
