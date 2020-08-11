@@ -205,6 +205,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
 
   @override
   Widget build(BuildContext context) {
+    editController();
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -235,6 +236,7 @@ class _InternationalPhoneInputState extends State<InternationalPhoneInputs> {
                 )),
             child: DropdownButtonHideUnderline(
               child: DropdownButton<Country>(
+                isExpanded: true,
                 icon: Container(),
                 isDense: true,
                 value: selectedItem,
